@@ -1,0 +1,10 @@
+<main>
+  <div class="image-grid">
+    <ng-container *ngFor="let game of games">
+      <a routerLink="/game" [queryParams]="{ id: game.id }">
+        <img width="100%" src="{{game.cover.url}}" alt="">
+        <b>{{game.name}}</b>
+      </a>
+    </ng-container>
+  </div>
+</main>

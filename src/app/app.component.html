@@ -1,0 +1,35 @@
+<main>
+  <header class="top-tool-bar">
+    <div>
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>{{title}}</span>
+    </div>
+    <div>
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu">
+          <i-lucide [img]="filter" [size]="16" color="white" />
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor="let i of store" (click)="getMenu(i.value)"
+            [ngStyle]="{ background: setMenuBackground(i.value) }">{{i.text}}</button>
+        </mat-menu>
+      </div>
+
+    </div>
+  </header>
+
+  <router-outlet />
+</main>
+
+<footer>
+  <ul>
+    <li *ngFor="let option of footerOptions">
+      <a routerLink="{{option.path}}">
+        <i-lucide [img]="option.icon"></i-lucide>
+        {{option.field}}
+      </a>
+    </li>
+  </ul>
+</footer>

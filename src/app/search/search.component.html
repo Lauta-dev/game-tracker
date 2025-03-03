@@ -1,0 +1,20 @@
+<form [formGroup]="profileForm" (ngSubmit)="submit()">
+  <mat-form-field class="search-input">
+    <mat-label class="mat-label-search">Buscar juego</mat-label>
+    <input matInput formControlName="query" type="text" placeholder="Buscar juego" />
+  </mat-form-field>
+
+  <button mat-flat-button type="submit">Basic</button>
+</form>
+
+
+<main>
+  <div class="image-grid">
+    <ng-container *ngFor="let game of games">
+      <a routerLink="/game" [queryParams]="{ id: game.id }">
+        <img width="100%" src="{{game.cover.url}}" alt="">
+        <b>{{game.name}}</b>
+      </a>
+    </ng-container>
+  </div>
+</main>

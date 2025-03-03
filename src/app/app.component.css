@@ -1,0 +1,47 @@
+.top-tool-bar {
+  background: #171717;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-tool-bar div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 100;
+  background-color: var(--bg-color-opa);
+  height: 60px;
+  backdrop-filter: blur(6px);
+}
+
+footer ul {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+footer ul li a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+main {
+  padding: .8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

@@ -1,0 +1,27 @@
+<div class="container-image">
+  <img src="{{game?.cover?.url}}" alt="{{game?.name}}">
+</div>
+<div>
+
+  <main class="game-info">
+
+    <div class="game-title-container">
+      <h1 class="game-title" style="color: {{titleColor}}">{{game?.name}}</h1>
+
+      <div class="game-status-menu">
+        <button mat-button [matMenuTriggerFor]="menu"
+          style="font-weight: bold; color: white; background: {{ backgorundState }};">{{statusMessage}}</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor="let i of store" (click)="changeStatus(i)">{{i.text}}</button>
+        </mat-menu>
+      </div>
+    </div>
+
+    <div class="consoles">
+      <ng-container *ngFor="let platform of game?.platforms">
+        <div [ngStyle]="{'background': setPlatformColor(platform.platform_family?.slug || '#000000')}">
+          <b>{{platform.name}}</b>
+        </div>
+      </ng-container>
+    </div>
+  </main>

@@ -6,7 +6,7 @@ import { infoGames } from "../../interface/info-games";
 	providedIn: "root",
 })
 export class GameService {
-	private url = "http://localhost:3000/";
+	private url = "https://game-tracker-proxy.vercel.app/";
 	private urlSearchGames = this.url + "search";
 	public data: any = [];
 
@@ -17,6 +17,8 @@ export class GameService {
 	}
 
 	getGameById(id: number) {
-		return this.http.get<infoGames[]>("http://localhost:3000/games?id=" + id);
+		return this.http.get<infoGames[]>(
+			"https://game-tracker-proxy.vercel.app/games?id=" + id,
+		);
 	}
 }

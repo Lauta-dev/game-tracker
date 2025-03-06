@@ -1,7 +1,4 @@
 import { Routes } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
-import { GameComponent } from "./game/game.component";
-import { SearchComponent } from "./search/search.component";
 
 export const routes: Routes = [
 	{
@@ -11,14 +8,18 @@ export const routes: Routes = [
 	},
 	{
 		path: "home",
-		component: HomeComponent,
+		loadComponent: () =>
+			import("./home/home.component").then((m) => m.HomeComponent),
 	},
 	{
 		path: "game",
-		component: GameComponent,
+		loadComponent: () =>
+			import("./game/game.component").then((m) => m.GameComponent),
 	},
 	{
 		path: "search",
-		component: SearchComponent,
+
+		loadComponent: () =>
+			import("./search/search.component").then((m) => m.SearchComponent),
 	},
 ];

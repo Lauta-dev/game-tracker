@@ -27,7 +27,6 @@ import { IconService } from "./services/icon.service";
 	],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.css",
-	providers: [IconService],
 })
 export class AppComponent {
 	store = gamesStatus;

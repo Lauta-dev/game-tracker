@@ -9,6 +9,7 @@ import { ChangeGameStatusService } from "./services/change-game-status.service";
 import { gamesStatus } from "../const";
 import { CommonModule } from "@angular/common";
 import { Filter, House, LucideAngularModule, Search } from "lucide-angular";
+import { IconService } from "./services/icon.service";
 
 @Component({
 	selector: "app-root",
@@ -26,6 +27,7 @@ import { Filter, House, LucideAngularModule, Search } from "lucide-angular";
 	],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.css",
+	providers: [IconService],
 })
 export class AppComponent {
 	store = gamesStatus;

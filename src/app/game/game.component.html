@@ -1,27 +1,52 @@
-<div class="container-image">
-  <img src="{{game?.cover?.url}}" alt="{{game?.name}}">
-</div>
-<div>
+<div class="conteiner">
+
+  <div class="container-image">
+    <img src="{{game?.cover?.url}}" alt="{{game?.name}}">
+  </div>
 
   <main class="game-info">
 
     <div class="game-title-container">
       <h1 class="game-title" style="color: {{titleColor}}">{{game?.name}}</h1>
+    </div>
+
+    <section class="game-less-info">
+      <div class="game-author">
+        <b>{{game?.companies?.developer}} • {{game?.releaseDate}}</b>
+      </div>
 
       <div class="game-status-menu">
         <button mat-button [matMenuTriggerFor]="menu"
-          style="font-weight: bold; color: white; background: {{ backgorundState }};">{{statusMessage}}</button>
+          style="font-weight: bold; color: white; background: {{ backgorundState }}; display: flex; align-items: center;">
+          {{statusMessage.text}}
+        </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item *ngFor="let i of store" (click)="changeStatus(i)">{{i.text}}</button>
+          <button mat-menu-item *ngFor="let i of store" (click)="changeStatus(i)"
+            style="display: flex; align-items: center;">
+            {{i.text}}
+          </button>
         </mat-menu>
       </div>
-    </div>
+    </section>
 
-    <div class="consoles">
-      <ng-container *ngFor="let platform of game?.platforms">
-        <div [ngStyle]="{'background': setPlatformColor(platform.platform_family?.slug || '#000000')}">
-          <b>{{platform.name}}</b>
-        </div>
-      </ng-container>
-    </div>
+    <section class="description">
+      <h2>Descipción</h2>
+      <p>
+        {{game?.summary}}
+      </p>
+    </section>
+    <section class="platforms">
+      <h2>Plataformas</h2>
+
+      <div>
+        <ng-container *ngFor="let platform of game?.platforms">
+          <div [ngStyle]="{'background': setPlatformColor(platform.platform_family?.slug || '#000000')}">
+            <b>{{platform.name}}</b>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+
+
+
   </main>

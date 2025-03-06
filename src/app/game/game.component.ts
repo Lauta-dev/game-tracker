@@ -1,18 +1,21 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { filterGames, platforsColors, statusColors } from "../../const";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { GameService } from "../services/game-service.service";
 import { infoGames } from "../../interface/info-games";
 import { LocalGameTrackerService } from "../services/local-game-tracker.service";
 import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
+import { MatIconModule } from "@angular/material/icon";
+import { IconService } from "../services/icon.service";
 
 @Component({
 	selector: "app-game",
-	imports: [CommonModule, MatButtonModule, MatMenuModule],
+	imports: [CommonModule, MatButtonModule, MatMenuModule, MatIconModule],
 	templateUrl: "./game.component.html",
 	styleUrl: "./game.component.css",
+	providers: [IconService],
 })
 export class GameComponent implements OnInit {
 	titleColor = statusColors[0];
@@ -22,7 +25,7 @@ export class GameComponent implements OnInit {
 	game: infoGames | null = null;
 	loading = false;
 	store = filterGames;
-	statusMessage = "No Game";
+	statusMessage = { text: "Añadir", icon: "all" };
 
 	constructor(
 		private router: ActivatedRoute,
@@ -49,19 +52,22 @@ export class GameComponent implements OnInit {
 		if (existGame) {
 			const d = savesGamee as infoGames;
 			this.game = d;
+			console.log(d);
 
-			const { color, text } = filterGames.filter(
+			const { color, text, icon } = filterGames.filter(
 				(filter) => filter.value === d?.status || 0,
 			)[0];
 
 			this.backgorundState = color;
-			this.statusMessage = text;
+			this.statusMessage = { text, icon };
+			console.log({ text, icon });
 		} else {
 			this.loading = true;
 			this.gameService.getGameById(this.id).subscribe({
 				next: (value) => {
 					console.log(value);
-					this.game = value[0];
+					const setDate = new Date(value[0].releaseDate * 1000);
+					this.game = { ...value[0], releaseDate: setDate.getFullYear() };
 				},
 			});
 
@@ -71,12 +77,12 @@ export class GameComponent implements OnInit {
 
 	changeStatus(i: unknown) {
 		// TODO: Arreglar los typing
-		const data = i as (typeof filterGames)[0];
-		this.backgorundState = data.color;
-		this.statusMessage = data.text;
+		const { icon, text, color, value } = i as (typeof filterGames)[0];
+		this.backgorundState = color;
+		this.statusMessage = { text, icon };
 
 		if (this.game) {
-			this.localGameTrackerService.addGame(this.game.id, data.value, this.game);
+			this.localGameTrackerService.addGame(this.game.id, value, this.game);
 		}
 	}
 

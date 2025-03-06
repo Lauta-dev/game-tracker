@@ -1,11 +1,16 @@
-export interface infoGames{
+export interface infoGames {
 	id: number;
 	cover: Cover;
-	first_release_date: number;
+	releaseDate: number;
 	name: string;
 	platforms: Platform[];
 	summary: string;
 	status?: number;
+	companies?: Company;
+}
+
+export interface Company {
+	developer: string;
 }
 
 export interface Cover {

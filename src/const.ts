@@ -1,4 +1,24 @@
+import { Check, CircleAlert, CircleX, Clock4, List } from "lucide-angular";
+
 export const url = "https://api.rawg.io/api/";
+
+const icons = [
+	"clock",
+	"circle-check",
+	"circle-x",
+	"circle-alert",
+	"circle-plus",
+	"list",
+];
+
+const iconsStatus = {
+	inProgress: icons[0],
+	finished: icons[1],
+	canceled: icons[2],
+	pending: icons[3],
+	completed: icons[4],
+	all: icons[5],
+};
 
 // 0 - No hay estado
 // 1 - En progreso
@@ -18,26 +38,30 @@ export const filterGames = [
 		text: "En Progreso",
 		value: 0,
 		color: statusColors[1],
+		icon: iconsStatus.inProgress,
 	},
 	{
 		text: "Terminado",
 		value: 1,
 		color: statusColors[2],
+		icon: iconsStatus.finished,
 	},
 	{
 		text: "Cancelado",
 		value: 2,
 		color: statusColors[3],
+		icon: iconsStatus.canceled,
 	},
 	{
 		text: "Pendiente",
 		value: 3,
 		color: statusColors[4],
+		icon: iconsStatus.pending,
 	},
 ];
 
 export const gamesStatus = [
-	{ text: "Todos", value: 4, color: statusColors[0] },
+	{ text: "Todos", value: 4, color: statusColors[0], icon: iconsStatus.all },
 	...filterGames,
 ];
 

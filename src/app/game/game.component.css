@@ -17,18 +17,19 @@
   background-image: linear-gradient(to top, #000, transparent);
 }
 
-.consoles {
+.platforms div {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   gap: 1rem;
 }
 
-.consoles div {
+.platforms div div {
   padding: 10px;
   border-radius: 5px;
+  text-align: center;
 }
 
-.consoles b {
+.platforms div b {
   font-size: 12px;
 }
 
@@ -44,10 +45,10 @@
   padding: 0;
 }
 
-
 .game-title-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .game-title {
@@ -56,5 +57,47 @@
   font-size: 1.5rem;
   font-weight: bold;
   color: white !important;
+}
+
+.conteiner {
+  padding-bottom: 60px;
+}
+
+.game-less-info {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+}
+
+.game-author {
+  font-size: 14px;
+  color: #8f8f8f;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.description h2 {
+  font-weight: 500;
+}
+
+h2 {
+  font-weight: 500;
+}
+
+.platforms {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.mat-mdc-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }

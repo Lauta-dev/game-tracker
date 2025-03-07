@@ -13,6 +13,7 @@ export class IconService {
 		"circle-alert",
 		"circle-plus",
 		"list",
+    "filter"
 	];
 
 	constructor(

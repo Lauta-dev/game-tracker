@@ -4,16 +4,8 @@
       <h3>{{title}}</h3>
     </div>
     <div>
-      <div>
-        <button mat-button [matMenuTriggerFor]="menu">
-          <i-lucide [img]="filter" [size]="16" color="white" />
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item *ngFor="let i of store" (click)="getMenu(i.value)"
-            [ngStyle]="{ background: setMenuBackground(i.value) }">{{i.text}}</button>
-        </mat-menu>
-      </div>
 
+      <app-game-status-menu [elements]="store"></app-game-status-menu>
     </div>
   </header>
 

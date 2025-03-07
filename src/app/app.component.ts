@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatIconModule } from "@angular/material/icon";
+import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { RouterLink, RouterOutlet } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
@@ -10,6 +10,8 @@ import { gamesStatus } from "../const";
 import { CommonModule } from "@angular/common";
 import { Filter, House, LucideAngularModule, Search } from "lucide-angular";
 import { IconService } from "./services/icon.service";
+import { DomSanitizer } from "@angular/platform-browser";
+import { GameStatusMenuComponent } from "./components/game-status-menu/game-status-menu.component";
 
 @Component({
 	selector: "app-root",
@@ -24,9 +26,11 @@ import { IconService } from "./services/icon.service";
 		CommonModule,
 		LucideAngularModule,
 		RouterLink,
+		GameStatusMenuComponent,
 	],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.css",
+	providers: [IconService],
 })
 export class AppComponent {
 	store = gamesStatus;
@@ -47,7 +51,10 @@ export class AppComponent {
 			icon: Search,
 		},
 	];
-	constructor(private changeGameStatusService: ChangeGameStatusService) {}
+	constructor(
+		private changeGameStatusService: ChangeGameStatusService,
+		private iconService: IconService,
+	) {}
 
 	setMenuBackground(i: number) {
 		return i === this.currentStatus ? this.currentStatusColor : "#000000";

@@ -1,0 +1,11 @@
+<div>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon svgIcon="filter" style="color: white;"></mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let i of elements">
+      <mat-icon [svgIcon]="i.icon" [ngStyle]="{ color: i.color }"></mat-icon>
+      {{i.text}}
+    </button>
+  </mat-menu>
+</div>

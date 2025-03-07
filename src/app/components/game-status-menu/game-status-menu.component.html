@@ -1,6 +1,5 @@
 <div>
-  <button mat-button [matMenuTriggerFor]="menu"
-    style="display: flex; justify-content: center; align-items: center; color: white; ">
+  <button mat-button [matMenuTriggerFor]="menu" [ngStyle]="defaultMenuTriggerButtonStyles">
     <ng-content></ng-content>
   </button>
   <mat-menu #menu="matMenu">

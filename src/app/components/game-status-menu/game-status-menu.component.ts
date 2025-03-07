@@ -26,8 +26,15 @@ import { GameFilter } from "../../../interface/filterGames";
 export class GameStatusMenuComponent {
 	constructor(private iconService: IconService) {}
 	@Input() elements: any[] = [];
+	@Input() menuTriggerButtonStyles = {};
 	@Output() sendedValue = new EventEmitter<any>();
-
+	defaultMenuTriggerButtonStyles = {
+		display: "flex",
+		"justify-content": "center",
+		"align-items": "center",
+		color: "white",
+		...this.menuTriggerButtonStyles,
+	};
 	action(i: any) {
 		this.sendedValue.emit(i);
 	}

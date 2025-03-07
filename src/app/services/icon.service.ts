@@ -6,13 +6,6 @@ import { DomSanitizer } from "@angular/platform-browser";
 	providedIn: "root",
 })
 export class IconService {
-	constructor(
-		private iconRegistry: MatIconRegistry,
-		private sanitizer: DomSanitizer,
-	) {
-		this.registerIcons();
-	}
-
 	readonly icons = [
 		"clock",
 		"circle-check",
@@ -22,10 +15,15 @@ export class IconService {
 		"list",
 	];
 
-	private registerIcons() {
+	constructor(
+		private iconRegistry: MatIconRegistry,
+		private sanitizer: DomSanitizer,
+	) {
+		this.icons.forEach((i) =>
 			this.iconRegistry.addSvgIcon(
-				"list",
-				this.sanitizer.bypassSecurityTrustResourceUrl(`assets/list.svg`),
-			);
+				i,
+				this.sanitizer.bypassSecurityTrustResourceUrl(`icons/${i}.svg`),
+			),
+		);
 	}
 }

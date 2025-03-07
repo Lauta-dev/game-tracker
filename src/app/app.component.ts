@@ -12,6 +12,7 @@ import { Filter, House, LucideAngularModule, Search } from "lucide-angular";
 import { IconService } from "./services/icon.service";
 import { DomSanitizer } from "@angular/platform-browser";
 import { GameStatusMenuComponent } from "./components/game-status-menu/game-status-menu.component";
+import { GameFilter } from "../interface/filterGames";
 
 @Component({
 	selector: "app-root",
@@ -60,19 +61,20 @@ export class AppComponent {
 		return i === this.currentStatus ? this.currentStatusColor : "#000000";
 	}
 
-	getMenu(data: number) {
+	v(v: any) {
+		const { value } = v as GameFilter;
+
 		const newTitle = this.store.filter(
-			(filter) => filter.value === data || 0,
+			(filter) => filter.value === value || 0,
 		)[0];
 
-		if (data === 4) {
+		if (value === 4) {
 			this.title = `${newTitle.text} los juegos`;
 		}
 
 		this.title = `juegos ${newTitle.text}`;
 
-		console.log(data);
-		this.changeGameStatusService.change(data);
+		this.changeGameStatusService.change(value);
 
 		this.currentStatus = newTitle.value;
 		this.currentStatusColor = newTitle.color;

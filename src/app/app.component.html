@@ -4,8 +4,9 @@
       <h3>{{title}}</h3>
     </div>
     <div>
-
-      <app-game-status-menu [elements]="store"></app-game-status-menu>
+      <app-game-status-menu [elements]="store" (sendedValue)="v($event)">
+        <mat-icon svgIcon="filter" style="color: white;" />
+      </app-game-status-menu>
     </div>
   </header>
 

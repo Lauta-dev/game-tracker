@@ -15,18 +15,14 @@
         <b>{{game?.companies?.developer}} • {{game?.releaseDate}}</b>
       </div>
 
-      <div class="game-status-menu">
-        <button mat-button [matMenuTriggerFor]="menu"
-          style="font-weight: bold; color: white; background: {{ backgorundState }}; display: flex; align-items: center;">
-          {{statusMessage.text}}
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item *ngFor="let i of store" (click)="changeStatus(i)"
-            style="display: flex; align-items: center;">
-            {{i.text}}
-          </button>
-        </mat-menu>
-      </div>
+      <app-game-status-menu [elements]="store" (sendedValue)="changeStatus($event)" [menuTriggerButtonStyles]="{
+        'font-weight': 'bold',
+        'color': 'white',
+        'background': backgorundState,
+        'display': 'flex',
+        'align-items': 'center' }">
+        {{statusMessage.text}}
+      </app-game-status-menu>
     </section>
 
     <section class="description">

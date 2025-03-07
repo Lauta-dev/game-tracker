@@ -9,10 +9,17 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
 import { IconService } from "../services/icon.service";
+import { GameStatusMenuComponent } from "../components/game-status-menu/game-status-menu.component";
 
 @Component({
 	selector: "app-game",
-	imports: [CommonModule, MatButtonModule, MatMenuModule, MatIconModule],
+	imports: [
+		CommonModule,
+		MatButtonModule,
+		MatMenuModule,
+		MatIconModule,
+		GameStatusMenuComponent,
+	],
 	templateUrl: "./game.component.html",
 	styleUrl: "./game.component.css",
 	providers: [IconService],
@@ -20,6 +27,12 @@ import { IconService } from "../services/icon.service";
 export class GameComponent implements OnInit {
 	titleColor = statusColors[0];
 	backgorundState = statusColors[0];
+	menuTriggerButtonStyles = {
+		"font-weight": "bold",
+		color: "white",
+		display: "flex",
+		"align-items": "center",
+	};
 
 	id = 0;
 	game: infoGames | null = null;
@@ -31,6 +44,7 @@ export class GameComponent implements OnInit {
 		private router: ActivatedRoute,
 		private gameService: GameService,
 		private localGameTrackerService: LocalGameTrackerService,
+		private iconServices: IconService,
 	) {}
 
 	ngOnInit(): void {
